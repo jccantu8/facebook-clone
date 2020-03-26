@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :sent_friend_requests, foreign_key: "requestor_id", class_name: "FriendRequest"
   has_many :received_friend_requests, foreign_key: "requestee_id", class_name: "FriendRequest"
   has_many :friends
+  has_many :likes
 
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false },
     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, 
