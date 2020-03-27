@@ -2,7 +2,7 @@ class FriendsController < ApplicationController
     def create
         #Friend model uses two records for each friendship.
         @friend1 = current_user.friends.build(friend_params)
-        @friend2 = other_user.friends.build
+        @friend2 = other_user.friends.build(:friend_id => current_user.id)
 
         if @friend1.save && @friend2.save
             flash[:success] = "You are now friends!"
@@ -24,5 +24,9 @@ class FriendsController < ApplicationController
 
         def friend_params
             params.require(###).permit(friend_id)
+        end
+
+        def other_user
+            User.find_by(:id => friend_id)
         end
 end

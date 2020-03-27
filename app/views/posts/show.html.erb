@@ -1,4 +1,18 @@
 <div>
-    <h1> <%= @post.title %> </h1>
-    <%= @post.content %>
+    <div> <h1> <%= @post.title %> </h1> </div>
+    <div> <%= @post.content %> </div>
+    <%= link_to "Destroy", user_post_path(@post), method: :delete, data: {confirm: "Are you sure?" } %>
+
+    <div> <% @list_of_comments.each do |comment| %>
+        <%= comment.content %>
+    </div> <% end %>
+
+    <%= form_with model: @comment, url: comments_path(post_id: @post.id), local: true do |f| %>
+        <%= f.label :content, "Comment" %>
+        <%= f.text_area :content %>
+
+        <%= f.hidden_field :post_id %>
+
+        <%= f.submit "Comment" %>
+    <% end %>
 </div>

@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = current_user.build(post_params)
+        @post = current_user.posts.build(post_params)
 
         if @post.save
             flash[:success] = "Post created!"
@@ -22,18 +22,21 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find_by(:id => params[:id])
+        @comment = @post.comments.build
+
+        @list_of_comments = @post.comments
     end
 
     def destroy
         #post can only be destroyed by author
-        #find post and .destroy it
-        #flash[:success] = "Post destroyed."
-        #redirect_to root_url
+        Post.find(params[:id]).destroy
+        flash[:success] = "Post destroyed."
+        redirect_to root_url
     end
     
     private
 
         def post_params
-            #params.require(###).permit(:title, :content)
+            params.require(:post).permit(:title, :content)
         end
 end

@@ -1,8 +1,8 @@
 <div> 
-    <%= @posts.each do |post| %>
+    <% @posts.each do |post| %>
         <div>
-            <% post.title %>
-            <% post.content %>
+            <%= post.title %>
+            <%= post.content %>
         </div>
     <% end %>
 </div>

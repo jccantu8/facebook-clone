@@ -1,7 +1,11 @@
 <div>
-    <%= form_with model: @post, url:  new_user_post_url do |f| %>
+    <%= form_with model: @post, url:  user_posts_path, local: true do |f| %>
+        <%= f.label :title, "Title" %>
         <%= f.text_field :title %>
+
+        <%= f.label :content, "Content" %>
         <%= f.text_area :content %>
+
         <%= f.submit "Post"  %>
     <% end %>
 </div>
