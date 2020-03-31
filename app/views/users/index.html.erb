@@ -1,0 +1,18 @@
+<h2> Received Friend Requests </h2>
+
+<% if !@list_of_received_friend_requests.empty? %>
+    <% @list_of_received_friend_requests.each do |request| %>
+        <b> <%= User.find_by(:id => request.requestor_id).email %> </b>
+        <%= link_to "Accept", friends_path(:friend_id => request.requestor_id), method: :post %>
+        <%= link_to "Decline", friend_request_path(:id => request.id, :requestor_id => request.requestor_id), method: :delete %>
+    <% end %>
+<% end %>
+
+<h3> Friends </h3>
+
+<% if !@list_of_friends.empty? %>
+    <% @list_of_friends.each do |friend| %>
+        <%= User.find_by(:id => friend.friend_id).email %>
+        <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete %>
+    <% end %>
+<% end %>

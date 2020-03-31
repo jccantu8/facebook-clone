@@ -22,17 +22,27 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find_by(:id => params[:id])
-        @comment = @post.comments.build
-
         @list_of_comments = @post.comments
+        @comment = Comment.new
+        @current_user_id = current_user.id
     end
 
     def destroy
         #post can only be destroyed by author
-        Post.find(params[:id]).destroy
+        Post.find_by(:id => params[:id]).destroy
         flash[:success] = "Post destroyed."
         redirect_to root_url
     end
+
+    def like_exists(post_id)
+        if Like.find_by(:user_id => current_user.id, :post_id => post_id)
+            return true
+        else
+            return false
+        end
+    end
+
+    helper_method :like_exists
     
     private
 

@@ -1,8 +1,10 @@
 <div> 
+    <h1> Posts Index </h1>
     <% @posts.each do |post| %>
         <div>
-            <%= post.title %>
-            <%= post.content %>
+            <b> <%= post.title %> </b>
+            <p> <%= post.content %> </p>
         </div>
     <% end %>
+    
 </div>

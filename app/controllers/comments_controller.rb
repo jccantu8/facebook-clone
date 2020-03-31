@@ -13,9 +13,9 @@ class CommentsController < ApplicationController
 
     def destroy
         #comment author and post author can destroy it
-        #find the comment and .destroy it
-        #flash[:success] = "Comment destroyed."
-        #redirect_to root_url
+        Comment.find_by(:id => params[:id]).destroy
+        flash[:success] = "Comment destroyed."
+        redirect_to root_url
     end
 
     private

@@ -11,6 +11,17 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <header>
+      <ul>
+        <% if user_signed_in? %>
+          <li> <%= link_to "Sign_out", destroy_user_session_path, :method => :delete %> </li>
+        <% else %>
+          <li> <%= link_to "Sign_in", new_user_session_path %> </li>
+        <% end %>
+        <li> <%= link_to "Friend Requests", users_path %> </li>
+      </ul>
+    </header>
     
     <%= yield %>
   </body>
