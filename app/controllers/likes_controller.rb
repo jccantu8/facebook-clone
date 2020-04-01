@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+    before_action :authenticate_user!
 
     def create
         #disallow liking same post more than once
@@ -17,7 +18,7 @@ class LikesController < ApplicationController
         #can only destroy if current_user
         Like.find_by(:user_id => current_user.id, :post_id => params[:post_id]).destroy
         flash[:success] = "Like destroyed."
-        redirect_to root_url
+        redirect_to user_post_url(:user_id => current_user.id, :id => params[:post_id])
     end
 
     private

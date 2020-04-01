@@ -1,4 +1,6 @@
 class FriendsController < ApplicationController
+    before_action :authenticate_user!
+
     def create
         # find and destroy friend request
         FriendRequest.find_by(:requestor_id => params[:friend_id], :requestee_id => current_user.id).destroy
@@ -9,7 +11,7 @@ class FriendsController < ApplicationController
 
         if @friend1.save && @friend2.save
             flash[:success] = "You are now friends!"
-            redirect_to root_url
+            redirect_to users_url
         else
             flash[:error] = "An error occurred."
             redirect_to root_url
@@ -21,7 +23,7 @@ class FriendsController < ApplicationController
         Friend.find_by(:user_id => current_user.id, :friend_id => params[:friend_id]).destroy
         Friend.find_by(:user_id => params[:friend_id], :friend_id => current_user.id).destroy
         flash[:success] = "You are no longer friends."
-        redirect_to root_url
+        redirect_to users_url
     end
 
     private

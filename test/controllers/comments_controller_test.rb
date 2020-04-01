@@ -1,7 +1,7 @@
 require "test_helper"
 
-describe CommentsController do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+class CommentsControllerTest < ActionDispatch::IntegrationTest
+  test "dfa" do
+
+  end
 end

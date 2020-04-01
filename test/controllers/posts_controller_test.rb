@@ -1,7 +1,11 @@
 require "test_helper"
 
-describe PostsController do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+class PostsControllerTest  < ActionDispatch::IntegrationTest
+  def setup
+    @post = users(:John)
+  end
+
+  test "should " do
+
+  end
 end

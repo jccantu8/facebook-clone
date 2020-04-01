@@ -1,6 +1,6 @@
 require "test_helper"
 
-describe FriendsController do
+class FriendsControllerTest < ActionDispatch::IntegrationTest
   # it "does a thing" do
   #   value(1+1).must_equal 2
   # end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!
+
     def index
         #list users that current user is not friends with and has not sent a request to
         @list_of_received_friend_requests = current_user.received_friend_requests

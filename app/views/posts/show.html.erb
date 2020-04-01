@@ -18,7 +18,7 @@
             <%= comment.content %>
 
             <% if (comment.user_id == @current_user_id) || (comment.user.id == @post.user.id) %>
-                <%= link_to "Delete Comment", comment_path(comment), method: :delete, data: {confirm: "Are you sure?" } %>
+                <%= link_to "Delete Comment", comment_path(:id => comment.id, :post_id => @post.id), method: :delete, data: {confirm: "Are you sure?" } %>
             <% end %>
         <% end %> </div> 
     <% end %>

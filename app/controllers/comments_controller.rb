@@ -1,10 +1,12 @@
 class CommentsController < ApplicationController
+    before_action :authenticate_user!
+
     def create
         @comment = current_user.comments.build(comment_params)
 
         if @comment.save
             flash[:success] = "Comment posted!"
-            redirect_to root_url
+            redirect_to user_post_url(:user_id => current_user.id, :id => @comment.post_id)
         else
             flash[:error] = "An error occurred."
             redirect_to root_url
@@ -14,8 +16,8 @@ class CommentsController < ApplicationController
     def destroy
         #comment author and post author can destroy it
         Comment.find_by(:id => params[:id]).destroy
-        flash[:success] = "Comment destroyed."
-        redirect_to root_url
+        flash[:success] = "Comment deleted."
+        redirect_to user_post_url(:user_id => current_user.id, :id => params[:post_id])
     end
 
     private

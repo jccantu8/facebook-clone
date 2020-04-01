@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+    before_action :authenticate_user!
+
     def index
         #display all posts from current user and their friends'
         @posts = Post.all
@@ -13,10 +15,10 @@ class PostsController < ApplicationController
 
         if @post.save
             flash[:success] = "Post created!"
-            redirect_to root_url
+            redirect_to user_post_url(:user_id => current_user.id, :id => @post.id)
         else
             flash[:error] = "An error occurred."
-            redirect_to root_url
+            redirect_to new_user_post_url(:user_id => current_user.id)
         end 
     end
 
