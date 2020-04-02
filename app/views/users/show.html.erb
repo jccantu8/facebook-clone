@@ -13,6 +13,7 @@
     <div>
         <% @list_of_posts.each do |post| %>
             <div>
+                <%= post.user.name %>
                 <%= post.title %>
                 <%= post.content %>
             </div>

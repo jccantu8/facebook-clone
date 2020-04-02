@@ -3,6 +3,7 @@
     <% @posts.each do |post| %>
         <div>
             <b> <%= post.title %> </b>
+            <i> <%= post.user.name %> </i>
             <p> <%= post.content %> </p>
         </div>
     <% end %>

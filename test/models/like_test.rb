@@ -26,4 +26,6 @@ class LikeTest < ActiveSupport::TestCase
     @like_duplicate = @like.dup
     assert_not @like_duplicate.valid?
   end
+
+  ##cant like your own post
 end

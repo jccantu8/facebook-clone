@@ -1,6 +1,12 @@
 <div>
     <div> <h1> <%= @post.title %> </h1> </div>
+    <div> <i> <%= @post.user.name %> </i> </div>
     <div> <%= @post.content %> </div>
+    <div> <b> Likes </b>
+        <% @post.likes.each do |like| %> 
+            <%= like.user.name %>
+        <% end %>
+    </div>
 
     <% if @current_user_id != @post.user_id %>
         <% if like_exists(@post.id) %>

@@ -14,7 +14,7 @@ class FriendRequest < ApplicationRecord
 
         def cannot_add_yourself
             if requestor_id == requestee_id
-                errors.add(:requestee_id, "cannot send a friend request to yourself")
+                errors.add(:requestor_id, "cannot send a friend request to yourself")
             end
         end
 

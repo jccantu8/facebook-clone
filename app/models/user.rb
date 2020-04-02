@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :friends
   has_many :likes
 
+  validates :name, presence: true, length: { maximum: 30 },
+    format: { with: /\A[a-zA-Z]+\z/,
+              message: "Names can only contain letters" }
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false },
     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, 
               message: "Emails can only contain certain characters" }
