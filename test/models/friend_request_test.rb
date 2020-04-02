@@ -32,5 +32,9 @@ class FriendRequestTest < ActiveSupport::TestCase
     assert_not @new_friend_request.valid?
   end
 
-  ##add test to check cant add someone who added you
+  test "cannot send a friend request to someone who has added you" do
+    @friend_request.save
+    @friend_request2 = FriendRequest.new(:requestor_id => @user2.id, :requestee_id => @user.id)
+    assert_not @friend_request2.valid?
+  end
 end

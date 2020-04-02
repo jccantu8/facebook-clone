@@ -1,8 +1,6 @@
 class FriendRequestsController < ApplicationController
     before_action :authenticate_user!
 
-    # cant send a friend request to someone who sent you one
-
     def create
         @friend_request = current_user.sent_friend_requests.build(friend_request_params)
         

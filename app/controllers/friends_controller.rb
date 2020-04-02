@@ -6,6 +6,7 @@ class FriendsController < ApplicationController
         FriendRequest.find_by(:requestor_id => params[:friend_id], :requestee_id => current_user.id).destroy
 
         #Friend model uses two records for each friendship.
+        ####test this in the controller
         @friend1 = current_user.friends.build(:friend_id => params[:friend_id])
         @friend2 = other_user.friends.build(:friend_id => current_user.id)
 
