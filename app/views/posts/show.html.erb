@@ -1,40 +1,43 @@
-<div>
-    <div> <h1> <%= @post.title %> </h1> </div>
-    <div> <i> <%= @post.user.name %> </i> </div>
-    <div> <%= @post.content %> </div>
-    <div> <b> Likes </b>
-        <% @post.likes.each do |like| %> 
-            <%= like.user.name %>
-        <% end %>
-    </div>
+<h1> <%= @post.title %> </h1>
+<i> Author: <%= @post.user.name %> </i>
+<p> <%= @post.content %> </p>
 
-    <% if @current_user_id != @post.user_id %>
-        <% if like_exists(@post.id) %>
-            <%= link_to "Unlike", like_path(:post_id => @post.id), method: :delete %>
-        <% else %>
-            <%= link_to "Like", likes_path(:post_id => @post.id), method: :post %>
-        <% end %>
+<% if current_user.id != @post.user_id %>
+    <% if like_exists(@post.id) %>
+        <%= link_to "Unlike", like_path(:post_id => @post.id), method: :delete %>
     <% else %>
-        <%= link_to "Destroy", user_post_path(@post), method: :delete, data: {confirm: "Are you sure?" } %>
+        <%= link_to "Like", likes_path(:post_id => @post.id), method: :post %>
     <% end %>
+<% else %>
+    <%= link_to "Delete Post", user_post_path(@post), method: :delete, data: {confirm: "Are you sure?" } %>
+<% end %>
 
-    <h2> Comments </h2>
-    <% if !@list_of_comments.empty? %>
-        <div> <% @list_of_comments.each do |comment| %>
-            <%= comment.content %>
+<hr>
+<h3> Likes </h3>
+<ul> <% @post.likes.each do |like| %> 
+    <li> <%= like.user.name %> </li>
+<% end %> </ul>
+<hr>
 
-            <% if (comment.user_id == @current_user_id) || (comment.user.id == @post.user.id) %>
-                <%= link_to "Delete Comment", comment_path(:id => comment.id, :post_id => @post.id), method: :delete, data: {confirm: "Are you sure?" } %>
-            <% end %>
-        <% end %> </div> 
-    <% end %>
+<h3> Comments </h3>
+<% if !@list_of_comments.empty? %>
+    <ol> <% @list_of_comments.each do |comment| %>
+        <li> 
+        <i> <%= comment.user.name %> said: </i>
+        <%= comment.content %>
 
-    <%= form_with model: @comment, url: comments_path, local: true do |f| %>
-        <%= f.label :content, "Comment" %>
-        <%= f.text_area :content %>
+        <% if (comment.user_id == current_user.id) || (comment.user.id == @post.user.id) %>
+            <%= link_to "Delete Comment", comment_path(:id => comment.id, :post_id => @post.id), method: :delete, data: {confirm: "Are you sure?" } %>
+        <% end %>
+        </li> <br>
+    <% end %> </ol> 
+<% end %>
 
-        <%= f.hidden_field :post_id, value: @post.id %>
+<br>
+<%= form_with model: @comment, url: comments_path, local: true do |f| %>
+    <%= f.text_area :content %>
 
-        <%= f.submit "Comment" %>
-    <% end %>
-</div>
+    <%= f.hidden_field :post_id, value: @post.id %>
+
+    <%= f.submit "Comment" %>
+<% end %>

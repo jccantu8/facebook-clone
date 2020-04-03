@@ -8,11 +8,26 @@
     <% end %>
 <% end %>
 
-<h3> Friends </h3>
+<h2> Friends </h2>
 
 <% if !@list_of_friends.empty? %>
     <% @list_of_friends.each do |friend| %>
         <%= User.find_by(:id => friend.friend_id).name %>
         <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete %>
+    <% end %>
+<% end %>
+
+<h2> Other Users </h2>
+
+<% if !@special_list.empty? %>
+    <% @special_list.each do |x| %>
+        <%= link_to "#{x.name}", user_path(x.id) %>
+
+        <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
+
+            <%= f.hidden_field :requestee_id, value: x.id %>
+
+            <%= f.submit "Send friend request." %>
+        <% end %>
     <% end %>
 <% end %>

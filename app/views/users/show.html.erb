@@ -1,22 +1,24 @@
-<div>
-    <h1> <%= @user.email %> </h1>
+<h1> <%= @user.name %> </h1>
 
-    <% if @current_user_id != @user.id %>
-        <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
+<% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
+    <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
 
         <%= f.hidden_field :requestee_id, value: @user.id %>
 
         <%= f.submit "Send friend request." %>
-        <% end %>
     <% end %>
+<% end %>
 
-    <div>
-        <% @list_of_posts.each do |post| %>
-            <div>
-                <%= post.user.name %>
-                <%= post.title %>
-                <%= post.content %>
-            </div>
-        <% end %>
-    </div>
-</div>
+<hr>
+
+<section>
+    <% @list_of_posts.each do |post| %>
+        <article>
+            <b> <%= post.title %> </b>
+            <br> <br>
+            <%= post.content %>
+            <br> <br>
+            <i> Author: <%= post.user.name %> </i> <hr>
+        </article>
+    <% end %>
+</section>

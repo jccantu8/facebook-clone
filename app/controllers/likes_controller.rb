@@ -2,7 +2,6 @@ class LikesController < ApplicationController
     before_action :authenticate_user!
 
     def create
-        #disallow liking same post more than once
         @like = current_user.likes.build(like_params)
 
         if @like.save

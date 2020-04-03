@@ -1,11 +1,12 @@
 <div> 
     <h1> Posts Index </h1>
-    <% @posts.each do |post| %>
-        <div>
+    <ol> <% @list_of_posts.each do |post| %>
+        <li>
             <b> <%= post.title %> </b>
             <i> <%= post.user.name %> </i>
             <p> <%= post.content %> </p>
-        </div>
-    <% end %>
+            <hr>
+        </li>
+    <% end %> </ol> 
     
 </div>

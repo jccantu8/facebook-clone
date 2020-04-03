@@ -2,12 +2,16 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        #display all posts from current user and their friends'
-        @posts = Post.all
+        @list_of_posts = list_of_posts_from_me_and_my_friends
     end
 
     def new
         @post = Post.new
+        ######
+        ######
+        ###### whenever i make a new post, every post's user id is being updated to theirs
+        ######
+        ######
     end
 
     def create
@@ -26,7 +30,6 @@ class PostsController < ApplicationController
         @post = Post.find_by(:id => params[:id])
         @list_of_comments = @post.comments
         @comment = Comment.new
-        @current_user_id = current_user.id
     end
 
     def destroy
@@ -44,7 +47,18 @@ class PostsController < ApplicationController
         end
     end
 
-    helper_method :like_exists
+    def list_of_posts_from_me_and_my_friends
+        list_of_friends_ids = current_user.friends.map { |friend| friend.friend_id}
+
+        list_of_friends_posts = list_of_friends_ids.map { |id| Post.where(:user_id => id) }
+        my_posts = current_user.posts
+
+        combined_list = my_posts.concat( list_of_friends_posts)
+
+        return combined_list
+    end
+
+    helper_method :like_exists, :list_of_posts_from_me_and_my_friends
     
     private
 

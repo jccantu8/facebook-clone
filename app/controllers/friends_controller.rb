@@ -20,7 +20,6 @@ class FriendsController < ApplicationController
     end
 
     def destroy
-        #make sure current user is logged in
         Friend.find_by(:user_id => current_user.id, :friend_id => params[:friend_id]).destroy
         Friend.find_by(:user_id => params[:friend_id], :friend_id => current_user.id).destroy
         flash[:success] = "You are no longer friends."
