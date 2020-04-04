@@ -7,11 +7,6 @@ class PostsController < ApplicationController
 
     def new
         @post = Post.new
-        ######
-        ######
-        ###### whenever i make a new post, every post's user id is being updated to theirs
-        ######
-        ######
     end
 
     def create
@@ -50,12 +45,9 @@ class PostsController < ApplicationController
     def list_of_posts_from_me_and_my_friends
         list_of_friends_ids = current_user.friends.map { |friend| friend.friend_id}
 
-        list_of_friends_posts = list_of_friends_ids.map { |id| Post.where(:user_id => id) }
-        my_posts = current_user.posts
+        combined_list = list_of_friends_ids.push(current_user.id)
 
-        combined_list = my_posts.concat( list_of_friends_posts)
-
-        return combined_list
+        return Post.where(user_id: combined_list)
     end
 
     helper_method :like_exists, :list_of_posts_from_me_and_my_friends
