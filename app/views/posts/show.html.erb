@@ -26,7 +26,7 @@
         <i> <%= comment.user.name %> said: </i>
         <%= comment.content %>
 
-        <% if (comment.user_id == current_user.id) || (comment.user.id == @post.user.id) %>
+        <% if ((comment.user_id == current_user.id) || (@post.user.id == current_user.id)) %>
             <%= link_to "Delete Comment", comment_path(:id => comment.id, :post_id => @post.id), method: :delete, data: {confirm: "Are you sure?" } %>
         <% end %>
         </li> <br>

@@ -1,7 +1,7 @@
 <div> 
     <h1> Posts Index </h1>
     <ol> <% @list_of_posts.each do |post| %>
-        <li>
+        <li> <%= link_to "View post", user_post_path(post.user.id, post.id) %>
             <b> <%= post.title %> </b>
             <i> <%= post.user.name %> </i>
             <p> <%= post.content %> </p>
