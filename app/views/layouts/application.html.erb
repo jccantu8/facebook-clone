@@ -8,25 +8,34 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'reset', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <header>
 
-    <nav>
-        <% if user_signed_in? %>
-          <li> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
-          <li> <%= link_to "Home", root_path %> </li>
-          <li> <%= link_to "Profile", user_path(current_user.id) %> </li>
-          <li> <%= link_to "Users", users_path %> </li>
-          <li> <%= link_to "New Post", new_user_post_path(current_user.id) %> </li>
-        <% else %>
-          <li> <%= link_to "Sign in", new_user_session_path %> </li>
-          <li> <%= link_to "Sign up", new_user_registration_path %> </li>
-        <% end %>
-    </nav>
+      <nav class="navbar">
+          <% if user_signed_in? %>
+            <li class="sign"> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
+            <li> <%= link_to "Home", root_path %> </li>
+            <li> <%= link_to "Profile", user_path(current_user.id) %> </li>
+            <li> <%= link_to "Users", users_path %> </li>
+            <li> <%= link_to "New Post", new_user_post_path(current_user.id) %> </li>
+          <% else %>
+            <li class="sign"> <%= link_to "Sign in", new_user_session_path %> </li>
+            <li class="sign"> <%= link_to "Sign up", new_user_registration_path %> </li>
+          <% end %>
+      </nav>
+
+      <% flash.each do |type, msg| %>
+        <div class="errors">
+          <%= msg %>
+        </div>
+      <% end %>
+    </header>
     
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

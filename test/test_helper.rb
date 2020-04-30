@@ -10,4 +10,12 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def list_of_posts_from_me_and_my_friends(user)
+    list_of_friends_ids = user.friends.map { |friend| friend.friend_id}
+
+    combined_list = list_of_friends_ids.push(user.id)
+
+    return Post.where(user_id: combined_list)
+  end
 end

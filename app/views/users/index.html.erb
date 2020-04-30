@@ -1,4 +1,4 @@
-<h2> Received Friend Requests </h2>
+<h1> Received Friend Requests </h1>
 
 <% if !@list_of_received_friend_requests.empty? %>
     <% @list_of_received_friend_requests.each do |request| %>
@@ -8,16 +8,17 @@
     <% end %>
 <% end %>
 
-<h2> Friends </h2>
+<h1> Friends </h1>
 
 <% if !@list_of_friends.empty? %>
     <% @list_of_friends.each do |friend| %>
-        <%= User.find_by(:id => friend.friend_id).name %>
+        <%= link_to "#{User.find_by(:id => friend.friend_id).name}", user_path(User.find_by(:id => friend.friend_id).id) %>
         <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete %>
+        <br>
     <% end %>
 <% end %>
 
-<h2> Other Users </h2>
+<h1> Other Users </h1>
 
 <% if !@special_list.empty? %>
     <% @special_list.each do |x| %>

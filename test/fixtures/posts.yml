@@ -1,3 +1,9 @@
 ExamplePost:
-  title: mytitle
-  content: example content
+  title: Test title
+  content: Test content
+  user: John
+
+ExamplePost2:
+  title: Test title2
+  content: Test content2
+  user: Mike

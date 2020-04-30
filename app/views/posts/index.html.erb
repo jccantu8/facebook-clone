@@ -1,10 +1,12 @@
-<div> 
-    <h1> Posts Index </h1>
+<div class="postIndex"> 
+    <h1 class="pageTitle"> Everyone's Posts </h1>
     <ol> <% @list_of_posts.each do |post| %>
-        <li> <%= link_to "View post", user_post_path(post.user.id, post.id) %>
-            <b> <%= post.title %> </b>
-            <i> <%= post.user.name %> </i>
-            <p> <%= post.content %> </p>
+        <li> 
+            <span class="name"><i> <%= post.user.name %> </i></span>
+            <br>
+            <%= link_to "#{post.title}", user_post_path(post.user.id, post.id), :class => 'link' %>
+            <br>
+            <p class="content"> <%= post.content %> </p>
             <hr>
         </li>
     <% end %> </ol> 

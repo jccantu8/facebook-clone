@@ -14,10 +14,58 @@
  *= require_self
  */
 
- * {
+ html, body {
      background-color: aquamarine;
  }
 
- li {
-     display: inline;
+ header .navbar {
+     position: fixed;
+     width: 100%;
+     top: 0;
+     background-color: #FB8F67;
+     padding-top: 10px;
+     padding-bottom: 10px;
  }
+
+ header .navbar li {
+     display: inline;
+     margin-right: 5px;
+     margin-left: 5px;
+ }
+
+ header .navbar .sign {
+     float: right;
+ }
+
+ header .navbar li a {
+     text-decoration: none;
+     color: black;
+ }
+
+ header .navbar li a:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+ header .errors {
+     margin-top: 50px;
+     background-color: white;
+     font-weight: bolder;
+     font-size: 2rem;
+     text-align: center;
+     padding: 10px;
+ }
+
+main {
+    display: block;
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    text-align: center;
+    background-color: cornsilk;
+    border-radius: 5px;
+}
+
+main h1, main h2 {
+    text-decoration: underline;
+}

@@ -14,10 +14,10 @@
 <section>
     <% @list_of_posts.each do |post| %>
         <article>
-            <b> <%= post.title %> </b>
-            <br> <br>
+            <%= link_to "#{post.title}", user_post_path(post.user.id, post.id) %>
+            <br>
             <%= post.content %>
-            <br> <br>
+            <br>
             <i> Author: <%= post.user.name %> </i> <hr>
         </article>
     <% end %>

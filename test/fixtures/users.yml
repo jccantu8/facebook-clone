@@ -2,10 +2,8 @@ John:
   name: John
   email: test@example.com
   encrypted_password: foobar
-  id: 1
 
 Mike:
   name: Mike
   email: test2@example.com
   encrypted_password: foobar2
-  id: 2

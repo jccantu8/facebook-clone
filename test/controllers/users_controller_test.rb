@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+
+  include Devise::Test::IntegrationHelpers
+
   def setup
     @user = users(:John)
   end
@@ -19,4 +22,5 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get new_user_registration_path
     assert_response :success
   end
+
 end
