@@ -7,3 +7,8 @@ ExamplePost2:
   title: Test title2
   content: Test content2
   user: Mike
+
+ExamplePost3:
+  title: Test title3
+  content: Test content3
+  user: John

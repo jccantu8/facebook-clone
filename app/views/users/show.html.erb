@@ -1,24 +1,25 @@
-<h1> <%= @user.name %> </h1>
+<div class="userShow">
+    <h1 class="pageTitle"> <%= @user.name %> </h1>
 
-<% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
-    <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
+    <% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
+        <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
 
-        <%= f.hidden_field :requestee_id, value: @user.id %>
+            <%= f.hidden_field :requestee_id, value: @user.id %>
 
-        <%= f.submit "Send friend request." %>
+            <%= f.submit "Send friend request.", :class => 'friendRequest' %>
+        <% end %>
     <% end %>
-<% end %>
 
-<hr>
+    <hr>
 
-<section>
-    <% @list_of_posts.each do |post| %>
-        <article>
-            <%= link_to "#{post.title}", user_post_path(post.user.id, post.id) %>
-            <br>
-            <%= post.content %>
-            <br>
-            <i> Author: <%= post.user.name %> </i> <hr>
-        </article>
-    <% end %>
-</section>
+    <section class="posts">
+        <% @list_of_posts.each do |post| %>
+            <article class="post">
+                <%= link_to "#{post.title}", user_post_path(post.user.id, post.id), :class => 'title' %>
+                <br>
+                <p class="content"><%= post.content %></p>
+                <hr>
+            </article>
+        <% end %>
+    </section>
+</div>

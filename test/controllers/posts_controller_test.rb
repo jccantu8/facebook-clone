@@ -7,9 +7,12 @@ class PostsControllerTest  < ActionDispatch::IntegrationTest
   def setup
     @user = users(:John)
     @friend = users(:Mike)
-    @mypost = @user.posts.create(:title => "Test title", :content => "Test content")
-    @hispost = @friend.posts.create(:title => "Test title2", :content => "Test content2")
+    @mypost = Post.find_by(:user_id => @user.id)
+    @hispost = Post.find_by(:user_id => @friend.id)
+    @friend1 = @user.friends.create(:friend_id => @friend.id)
+    @friend2 = @friend.friends.create(:friend_id => @user.id)
     @mylist = list_of_posts_from_me_and_my_friends(@user)
+
   end
 
   test "should redirect index when not logged in" do
@@ -87,5 +90,16 @@ class PostsControllerTest  < ActionDispatch::IntegrationTest
   end
 
   #Show
-  
+  test "should be able to get show and display user's post info" do
+    sign_in @user
+    get user_post_url(:user_id => @user.id, :id => @mypost.id)
+    assert_response :success
+    assert_select ".postShow .postTitle", text: "#{@mypost.title}"
+    assert_select ".postShow .name", text: "Author: #{@user.name}"
+    assert_select ".postShow .content", text: "#{@mypost.content}"
+    assert_select ".postShow .likeTitle", text: "Likes"
+    assert_select ".postShow .likes .name", text: "#{@friend.name}"
+    assert_select ".postShow .commentTitle", text: "Comments"
+    assert_select ".postShow .comments .comment", text: "#{@friend.name} said: #{@mypost.comments.first.content}"
+  end
 end
