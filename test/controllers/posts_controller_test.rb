@@ -12,6 +12,7 @@ class PostsControllerTest  < ActionDispatch::IntegrationTest
     @friend1 = @user.friends.create(:friend_id => @friend.id)
     @friend2 = @friend.friends.create(:friend_id => @user.id)
     @mylist = list_of_posts_from_me_and_my_friends(@user)
+    @otherUser = users(:Mary)
 
   end
 
@@ -102,4 +103,46 @@ class PostsControllerTest  < ActionDispatch::IntegrationTest
     assert_select ".postShow .commentTitle", text: "Comments"
     assert_select ".postShow .comments .comment", text: "#{@friend.name} said: #{@mypost.comments.first.content}"
   end
+
+  test "should be able to delete post" do
+    sign_in @user
+    get user_post_url(:user_id => @user.id, :id => @mypost.id)
+    assert_response :success
+    assert_select ".postShow .deletePost", text: "Delete Post"
+    assert_difference 'Post.count', -1 do
+      delete user_post_path(:user_id => @user.id, :id => @user.posts.first.id)
+    end
+  end
+
+  test "should be able to like and unlike a post" do
+    sign_in @otherUser
+    get user_post_url(:user_id => @user.id, :id => @mypost.id)
+    assert_response :success
+    assert_select ".postShow .like", text: "Like"
+    assert_difference 'Like.count', 1 do
+      post likes_path(:user_id => @otherUser.id, :post_id => @mypost.id)
+    end
+    get user_post_url(:user_id => @user.id, :id => @mypost.id)
+    assert_response :success
+    assert_select ".postShow .unlike", text: "Unlike"
+    assert_difference 'Like.count', -1 do
+      delete like_path(:post_id => @mypost.id, :id => @otherUser.id)
+    end
+  end
+
+  test "should be able to make a comment on a post and delete it" do
+    sign_in @otherUser
+    get user_post_url(:user_id => @user.id, :id => @mypost.id)
+    assert_response :success
+    assert_difference 'Comment.count', 1 do
+      post comments_path, params: { comment: { content: "test comment", :post_id => @mypost.id } }
+    end
+    get user_post_url(:user_id => @user.id, :id => @mypost.id)
+    assert_response :success
+    assert_select ".postShow .deleteComment", text: "Delete Comment"
+    assert_difference 'Comment.count', -1 do
+      delete comment_path(:user_id => @user.id, :post_id => @mypost.id, :id => @otherUser.comments.first.id)
+    end
+  end
+
 end

@@ -68,4 +68,40 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should be able to accept friend request and become friends" do
+    sign_in @user
+    get users_url
+    assert_response :success
+    assert_select ".userIndex .friendRequests .acceptRequest", text: "Accept"
+    assert_difference ->{ FriendRequest.count } => -1, ->{ Friend.count } => 2 do
+      post friends_path, params: { friend_id: @otherUser.id, requestee_id: @user.id }
+    end
+  end
+
+  test "should be able to decline friend request" do
+    sign_in @user
+    get users_url
+    assert_response :success
+    assert_select ".userIndex .friendRequests .declineRequest", text: "Decline"
+    assert_difference 'FriendRequest.count', -1 do
+      delete friend_request_path(id: @otherUser.sent_friend_requests.first.id, requestor_id: @otherUser.id, requestee_id: @user.id)
+    end
+  end
+
+  test "should be able to delete a friend" do
+    sign_in @user
+    get users_url
+    assert_response :success
+    assert_select ".userIndex .friends .deleteFriend", text: "Delete friend"
+    assert_difference 'Friend.count', -2 do
+      delete friend_path( id: @friend.friends.first.id , user_id: @user.id, friend_id: @friend.id)
+    end
+  end
+
+  test "should be able to display other users that you are not friends with" do
+    sign_in @user
+    get users_url
+    assert_response :success
+    assert_select ".userIndex .otherUsers .name", text: "#{@otherUser.name}"
+  end
 end

@@ -1,12 +1,12 @@
-<div class=userIndex>
+<div class="userIndex">
     <h1 class="friendRequestsTitle"> Received Friend Requests </h1>
 
     <div class="friendRequests">
         <% if !@list_of_received_friend_requests.empty? %>
             <% @list_of_received_friend_requests.each do |request| %>
                 <span class="name"><b> <%= User.find_by(:id => request.requestor_id).name %> </b></span>
-                <%= link_to "Accept", friends_path(:friend_id => request.requestor_id), method: :post %>
-                <%= link_to "Decline", friend_request_path(:id => request.id, :requestor_id => request.requestor_id), method: :delete %>
+                <%= link_to "Accept", friends_path(:friend_id => request.requestor_id), method: :post, :class => 'acceptRequest' %>
+                <%= link_to "Decline", friend_request_path(:id => request.id, :requestor_id => request.requestor_id), method: :delete, :class => 'declineRequest' %>
             <% end %>
         <% end %>
     </div>
@@ -17,7 +17,7 @@
         <% if !@list_of_friends.empty? %>
             <% @list_of_friends.each do |friend| %>
                 <%= link_to "#{User.find_by(:id => friend.friend_id).name}", user_path(User.find_by(:id => friend.friend_id).id),:class => 'name' %>
-                <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete %>
+                <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete, :class => 'deleteFriend' %>
                 <br>
             <% end %>
         <% end %>
