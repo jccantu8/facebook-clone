@@ -17,6 +17,11 @@ class UsersController < ApplicationController
         @friend_request = FriendRequest.new
     end
 
+    def update
+        @user = User.find_by(:id => params[:id])
+        @user.update_attributes(params[:avatar])
+    end
+
     def already_a_friend(user_id)
         if current_user.friends.find_by(:friend_id => user_id) != nil
             return true

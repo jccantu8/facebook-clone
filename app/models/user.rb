@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :received_friend_requests, foreign_key: "requestee_id", class_name: "FriendRequest"
   has_many :friends
   has_many :likes
+  has_one_attached :avatar
 
   validates :name, presence: true, length: { maximum: 30 },
     format: { with: /\A[a-zA-Z]+\z/,
@@ -20,4 +21,12 @@ class User < ApplicationRecord
               message: "Emails can only contain certain characters" }
   validates :password, presence: true, length: { maximum: 30 }
   validates :password_confirmation, presence: true, length: { maximum: 30 }
+
+  def avatar_thumbnail
+    if avatar.attached?
+      avatar.variant(resize: '150x150!').processed
+    else
+      "/default_profile.jpg"
+    end
+  end
 end

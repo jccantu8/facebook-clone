@@ -1,6 +1,13 @@
 <div class="userShow">
     <h1 class="pageTitle"> <%= @user.name %> </h1>
 
+    <p>
+        <%= link_to "Edit Account", edit_user_registration_path %>
+    </p>
+    <br>
+
+    <%= image_tag(current_user.avatar_thumbnail) %>
+
     <% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
         <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
 
