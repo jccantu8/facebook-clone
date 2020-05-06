@@ -6,7 +6,7 @@
     </p>
     <br>
 
-    <%= image_tag(current_user.avatar_thumbnail) %>
+    <%= image_tag(@user.avatar_thumbnail) %>
 
     <% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
         <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
