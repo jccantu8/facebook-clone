@@ -26,7 +26,6 @@ class User < ApplicationRecord
     if avatar.attached?
       avatar.variant(resize: '150x150!').processed
     else
-      puts "*************************************"
       "/default_profile.jpg"
     end
   end

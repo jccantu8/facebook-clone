@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 
 gem 'devise', '~> 4.2'
+gem 'letter_opener', :group => :development
 
 
 group :development, :test do
