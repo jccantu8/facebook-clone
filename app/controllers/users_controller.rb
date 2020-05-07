@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find_by(:id => params[:id])
         @user.avatar.attach(params[:avatar])
+        @user.update_attributes(params[:about_me])
     end
 
     def already_a_friend(user_id)

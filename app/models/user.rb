@@ -21,5 +21,6 @@ class User < ApplicationRecord
               message: "Emails can only contain certain characters" }
   validates :password, presence: true, length: { maximum: 30 }
   validates :password_confirmation, presence: true, length: { maximum: 30 }
+  #add validation for about_me
 
 end
