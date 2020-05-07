@@ -3,6 +3,10 @@
     <span class="name"><i> Author: <%= @post.user.name %> </i></span>
     <p class="content"> <%= @post.content %> </p>
 
+    <% if @post.picture.attached? %>
+        <%= image_tag(@post.picture, :class => "postPic") %>
+    <% end %>
+
     <% if current_user.id != @post.user_id %>
         <% if like_exists(@post.id) %>
             <%= link_to "Unlike", like_path(:post_id => @post.id), method: :delete, :class => 'unlike' %>

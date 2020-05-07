@@ -13,6 +13,8 @@
             <br>
             <%= f.text_area :content, rows:15, cols:80 %>
             <br>
+            <%= f.label :picture %><br />
+            <%= f.file_field :picture, :class => 'browseBtn' %>
         </div>
 
         <%= f.submit "Post", :class => 'submitBtn' %>
