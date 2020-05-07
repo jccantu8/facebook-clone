@@ -6,7 +6,11 @@
     </p>
     <br>
 
-    <%= image_tag(@user.avatar_thumbnail) %>
+    <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar, :class => "profilePic") %>
+    <% else %>
+        <%= image_tag("default_profile.jpg", :class => "profilePic") %>
+    <% end %>
 
     <% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
         <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>

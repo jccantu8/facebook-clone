@@ -22,11 +22,4 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { maximum: 30 }
   validates :password_confirmation, presence: true, length: { maximum: 30 }
 
-  def avatar_thumbnail
-    if avatar.attached?
-      avatar.variant(resize: '150x150!').processed
-    else
-      "/default_profile.jpg"
-    end
-  end
 end
