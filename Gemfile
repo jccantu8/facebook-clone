@@ -34,6 +34,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '~> 4.2'
 gem 'letter_opener', :group => :development
 
+gem "aws-sdk-s3", require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
