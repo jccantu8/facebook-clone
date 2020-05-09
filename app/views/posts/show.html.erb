@@ -1,11 +1,14 @@
 <div class="postShow">
-    <h1 class="postTitle"> <%= @post.title %> </h1>
+    <h1> <%= @post.title %> </h1>
     <span class="name"><i> Author: <%= @post.user.name %> </i></span>
+    <br>
     <p class="content"> <%= @post.content %> </p>
 
     <% if @post.picture.attached? %>
         <%= image_tag(@post.picture, :class => "postPic") %>
     <% end %>
+
+    <br>
 
     <% if current_user.id != @post.user_id %>
         <% if like_exists(@post.id) %>

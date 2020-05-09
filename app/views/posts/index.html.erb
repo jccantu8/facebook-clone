@@ -2,9 +2,13 @@
     <h1 class="pageTitle"> Everyone's Posts </h1>
     <ol> <% @list_of_posts.each do |post| %>
         <li> 
-            <span class="name"><i> <%= post.user.name %> </i></span>
+            <span class="name"> <%= post.user.name %> </span>
             <br>
             <%= link_to "#{post.title}", user_post_path(post.user.id, post.id), :class => 'link' %>
+            <br>
+            <% if post.picture.attached? %>
+                <%= image_tag(post.picture, :class => "postPic") %>
+            <% end %>
             <br>
             <p class="content"> <%= post.content %> </p>
             <hr>

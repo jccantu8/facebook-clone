@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ * {
+     font-family: sans-serif;
+ }
+
  html, body {
      background-color: #F2BC94;
  }
@@ -67,12 +71,13 @@ main {
 }
 
 main h1, main h2 {
-    color: white;
+    color: #F2BC94;
     text-decoration: underline;
+    font-weight: bolder;
 }
 
 main a {
-    color: #F2BC94;
+    color: white;
 }
 
 main p, main span, .postTitle, .postContent, .field {
@@ -87,6 +92,53 @@ main a:hover {
 main .userShow .profilePic {
     width: 150px;
     height: 150px;
+}
+
+main .userIndex .otherUsers .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+main .userIndex .name {
+    font-weight: bold;
+}
+
+main .userIndex .deleteFriend {
+    text-decoration: none;
+}
+
+main .userIndex .otherUsers .profilePic {
+    width: 150px;
+    height: 150px;
+}
+
+main .postIndex .name {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+main .postIndex .postPic {
+    width: 150px;
+    height: 150px;
+}
+
+main .postNew .postTitle, main .postNew .postContent, main .postNew .submitBtn {
+    margin-top: 5px;
+}
+
+main .postShow .postPic {
+    max-width: 100%;
+}
+
+main .postShow .likes li.name {
+    color: white;
+}
+
+main .userEdit .field, main .userEdit .actions {
+    margin-top: 5px;
 }
 
 .submitBtn, .commentBtn, .friendRequestBtn, .updateBtn, .cancelBtn, .browseBtn {
