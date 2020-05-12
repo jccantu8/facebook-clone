@@ -6,10 +6,10 @@ class LikesController < ApplicationController
 
         if @like.save
             flash[:success] = "Liked post!"
-            redirect_to root_url
+            redirect_to user_post_url(:user_id => current_user.id, :id => params[:post_id])
         else
             flash[:error] = "An error occurred."
-            redirect_to root_url
+            redirect_to user_post_url(:user_id => current_user.id, :id => params[:post_id])
         end
     end
 

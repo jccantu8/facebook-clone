@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @list_of_posts = list_of_posts_from_me_and_my_friends
+        @list_of_posts = list_of_posts_from_me_and_my_friends.reverse
     end
 
     def new
