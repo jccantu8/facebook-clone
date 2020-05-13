@@ -19,14 +19,14 @@
  }
 
  html, body {
-     background-color: #F2BC94;
+     background-color: #565656;
  }
 
  header .navbar {
      position: fixed;
      width: 100%;
      top: 0;
-     background-color: #30110D;
+     background-color: #C09F80;
      padding-top: 10px;
      padding-bottom: 10px;
  }
@@ -43,12 +43,12 @@
 
  header .navbar li a {
      text-decoration: none;
-     color: #F2BC94;
+     color: #76323F;
  }
 
  header .navbar li a:hover {
     text-decoration: none;
-    color: grey;
+    color: black;
 }
 
  header .errors {
@@ -66,27 +66,27 @@ main {
     margin-left: 200px;
     margin-right: 200px;
     text-align: center;
-    background-color: #722620;
+    background-color: #D7CEC7;
     border-radius: 5px;
 }
 
 main h1, main h2 {
-    color: #F2BC94;
+    color: #76323F;
     text-decoration: underline;
     font-weight: bolder;
 }
 
 main a {
-    color: white;
+    color: #A38300;
 }
 
 main p, main span, .postTitle, .postContent, .field {
-    color: white;
+    color: #A38300;
 }
 
 main a:hover {
     text-decoration: none;
-    color: grey;
+    color: black;
 }
 
 main .userShow .profilePic {
@@ -94,7 +94,7 @@ main .userShow .profilePic {
     height: 150px;
 }
 
-main .userIndex .otherUsers .user {
+main .userIndex .user {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,7 +110,7 @@ main .userIndex .deleteFriend {
     text-decoration: none;
 }
 
-main .userIndex .otherUsers .profilePic {
+main .userIndex .profilePic {
     width: 150px;
     height: 150px;
 }
@@ -134,7 +134,7 @@ main .postShow .postPic {
 }
 
 main .postShow .likes li.name {
-    color: white;
+    color: #A38300;
 }
 
 main .userEdit .field, main .userEdit .actions {
@@ -142,15 +142,15 @@ main .userEdit .field, main .userEdit .actions {
 }
 
 .submitBtn, .commentBtn, .friendRequestBtn, .updateBtn, .cancelBtn, .browseBtn {
-    background-color: #30110D;
-    color: #F2BC94;
+    background-color: #76323F;
+    color: #A38300;
     padding: 10px 10px 10px 10px;
     border: none;
     border-radius: 5px;
 }
 
 .submitBtn:hover, .commentBtn:hover, .friendRequestBtn:hover, .updateBtn:hover, .cancelBtn:hover, .browseBtn:hover {
-    background-color: #30110D;
-    color: grey;
+    background-color: #76323F;
+    color: white;
     cursor: pointer;
 }

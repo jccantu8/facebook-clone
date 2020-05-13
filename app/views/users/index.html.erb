@@ -4,11 +4,22 @@
     <div class="friendRequests">
         <% if !@list_of_received_friend_requests.empty? %>
             <% @list_of_received_friend_requests.each do |request| %>
-                <span class="name"><b> <%= User.find_by(:id => request.requestor_id).name %> </b></span>
-                <br>
-                <%= link_to "Accept", friends_path(:friend_id => request.requestor_id), method: :post, :class => 'acceptRequest' %>
-                <%= link_to "Decline", friend_request_path(:id => request.id, :requestor_id => request.requestor_id), method: :delete, :class => 'declineRequest' %>
-                <br>
+
+                <div class="user">
+                    <% if User.find_by(:id => request.requestor_id).avatar.attached? %>
+                            <%= image_tag(User.find_by(:id => request.requestor_id).avatar, :class => "profilePic") %>
+                        <% else %>
+                            <%= image_tag("default_profile.jpg", :class => "profilePic") %>
+                    <% end %>
+
+                    <div>
+                        <span class="name"><b> <%= User.find_by(:id => request.requestor_id).name %> </b></span>
+                        <br>
+                        <%= link_to "Accept", friends_path(:friend_id => request.requestor_id), method: :post, :class => 'acceptRequest' %>
+                        <%= link_to "Decline", friend_request_path(:id => request.id, :requestor_id => request.requestor_id), method: :delete, :class => 'declineRequest' %>
+                        <br>
+                    </div>
+                </div>
             <% end %>
         <% end %>
     </div>
@@ -18,9 +29,22 @@
     <div class="friends">
         <% if !@list_of_friends.empty? %>
             <% @list_of_friends.each do |friend| %>
-                <%= link_to "#{User.find_by(:id => friend.friend_id).name}", user_path(User.find_by(:id => friend.friend_id).id),:class => 'name' %>
-                <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete, :class => 'deleteFriend' %>
-                <br>
+
+                <div class="user">
+                    <% if User.find_by(:id => friend.friend_id).avatar.attached? %>
+                            <%= image_tag(User.find_by(:id => friend.friend_id).avatar, :class => "profilePic") %>
+                        <% else %>
+                            <%= image_tag("default_profile.jpg", :class => "profilePic") %>
+                    <% end %>
+
+
+                    <div>
+                        <%= link_to "#{User.find_by(:id => friend.friend_id).name}", user_path(User.find_by(:id => friend.friend_id).id),:class => 'name' %>
+                        <br>
+                        <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete, :class => 'deleteFriend' %>
+                        <br>
+                    </div>
+                </div>
             <% end %>
         <% end %>
     </div>
@@ -45,8 +69,8 @@
                             <%= f.hidden_field :requestee_id, value: x.id %>
 
                             <%= f.submit "Send friend request.", :class => 'friendRequestBtn' %>
+                        <% end %>
                     </div>
-                    <% end %>
                 </div>
             <% end %>
         <% end %>

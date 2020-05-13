@@ -41,9 +41,11 @@ class UsersController < ApplicationController
 
     def list_of_users_not_friends_with_and_has_not_sent_a_request
         list_of_friends_ids = current_user.friends.map { |friend| friend.friend_id}
-        list_of_friend_requests_ids = current_user.sent_friend_requests.map { |request| request.requestee_id}
+        list_of_sent_friend_requests_ids = current_user.sent_friend_requests.map { |request| request.requestee_id}
+        list_of_received_friend_requests_ids = current_user.received_friend_requests.map { |request| request.requestor_id}
 
-        combined_list = list_of_friends_ids.concat(list_of_friend_requests_ids)
+        combined_list = list_of_friends_ids.concat(list_of_sent_friend_requests_ids)
+        combined_list = combined_list.concat(list_of_received_friend_requests_ids)
 
         #Add current user's id to the list, so they will not show up in the user's index
         combined_list.push(current_user.id)
