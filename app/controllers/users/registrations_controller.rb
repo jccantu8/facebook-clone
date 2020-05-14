@@ -11,8 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-    super
-    UserMailer.with(user: @user).welcome_email.deliver_later
+     super
+     if @user.valid?
+      UserMailer.with(user: @user).welcome_email.deliver_later
+     else
+      flash[:error] = "An error occurred."
+     end
+     
    end
 
   # GET /resource/edit
