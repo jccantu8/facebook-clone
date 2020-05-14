@@ -1,24 +1,38 @@
-# README
+# FB-Clone #
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    A simple social media site that possesses basic functionality such as:
+        - Sign-up and registration (using Devise)
+        - Edit account information (profile picture and About me section)
+        - Display list of friends
+        - Display list of received friend requests
+        - Display list of other users
+        - Add/delete other users
+        - Create new posts with images
+        - Like/unlike posts
+        - Create/delete comments on posts
+        - Timeline showing your posts along with all of your friends' as well
 
-Things you may want to cover:
+    Here are some images of the site located [here](https://ancient-dawn-78161.herokuapp.com/) which is hosted on Heroku.
 
-* Ruby version
+    ## Profile ##
 
-* System dependencies
+    ![profile](/readmeImages/profile.png?raw=true)
 
-* Configuration
+    ## Users ##
 
-* Database creation
+    ![users](/readmeImages/users.png?raw=true)
 
-* Database initialization
+    ## New Post ##
 
-* How to run the test suite
+    ![newpost](/readmeImages/newpost.png?raw=true)
 
-* Services (job queues, cache servers, search engines, etc.)
+    ## Post ##
 
-* Deployment instructions
+    ![post1](/readmeImages/post1.png?raw=true)
+    ![post2](/readmeImages/post2.png?raw=true)
 
-* ...
+    ## Timeline ##
+
+    ![timeline1](/readmeImages/timeline1.png?raw=true)
+    ![timeline2](/readmeImages/timeline2.png?raw=true)
+    ![timeline3](/readmeImages/timeline3.png?raw=true)
