@@ -12,7 +12,7 @@
         - Create/delete comments on posts
         - Timeline showing your posts along with all of your friends' as well
 
-    Here are some images of the site located [here](https://ancient-dawn-78161.herokuapp.com/) which is hosted on Heroku.
+Here are some images of the site located [here](https://ancient-dawn-78161.herokuapp.com/) which is hosted on Heroku.
 
 ## Profile ##
 
