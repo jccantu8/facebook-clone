@@ -39,6 +39,14 @@ class UsersController < ApplicationController
         end
     end
 
+    def already_received_a_request(user_id)
+        if current_user.received_friend_requests.find_by(:requestor_id => user_id) != nil
+            return true
+        else
+            return false
+        end
+    end
+
     def list_of_users_not_friends_with_and_has_not_sent_a_request
         list_of_friends_ids = current_user.friends.map { |friend| friend.friend_id}
         list_of_sent_friend_requests_ids = current_user.sent_friend_requests.map { |request| request.requestee_id}
@@ -53,5 +61,5 @@ class UsersController < ApplicationController
         return User.where.not(id: combined_list)
     end
 
-    helper_method :already_a_friend, :already_sent_a_request, :list_of_users_not_friends_with_and_has_not_sent_a_request
+    helper_method :already_a_friend, :already_sent_a_request, :already_received_a_request, :list_of_users_not_friends_with_and_has_not_sent_a_request
 end

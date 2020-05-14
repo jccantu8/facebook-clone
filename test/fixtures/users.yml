@@ -12,3 +12,8 @@ Mary:
   name: Mary
   email: test3@example.com
   encrypted_password: foobar3
+
+Robert:
+  name: Robert
+  email: test4@example.com
+  encrypted_password: foobar4

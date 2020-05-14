@@ -8,6 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:John)
     @friend = users(:Mike)
     @otherUser = users(:Mary)
+    @otherUser2 = users(:Robert)
 
     @otherUser.sent_friend_requests.create(:requestee_id => @user.id)
 
@@ -36,7 +37,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_url
     assert_response :success
     assert_select ".userIndex .friendRequestsTitle", text: "Received Friend Requests"
-    assert_select ".userIndex .friendRequests .name", text: "#{@otherUser.name}"
+    assert_select ".userIndex .friendRequests .user .name", text: "#{@otherUser.name}"
   end
 
   test "should get index and display friends" do
@@ -52,7 +53,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_url
     assert_response :success
     assert_select ".userIndex .otherUsersTitle", text: "Other Users"
-    assert_select ".userIndex .otherUsers .name", text: "#{@otherUser.name}"
+    assert_select ".userIndex .otherUsers .user .name", text: "#{@otherUser2.name}"
   end
 
   #show
@@ -102,6 +103,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     get users_url
     assert_response :success
-    assert_select ".userIndex .otherUsers .name", text: "#{@otherUser.name}"
+    assert_select ".userIndex .otherUsers .name", text: "#{@otherUser2.name}"
   end
 end

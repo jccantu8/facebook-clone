@@ -2,7 +2,7 @@
     <h1 class="pageTitle"> Everyone's Posts </h1>
     <ol> <% @list_of_posts.each do |post| %>
         <li> 
-            <span class="name"> <%= post.user.name %> </span>
+            <i><span class="name"> <%= post.user.name %> </span></i>
             <br>
             <%= link_to "#{post.title}", user_post_path(post.user.id, post.id), :class => 'link' %>
             <br>

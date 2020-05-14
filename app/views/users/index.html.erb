@@ -13,7 +13,7 @@
                     <% end %>
 
                     <div>
-                        <span class="name"><b> <%= User.find_by(:id => request.requestor_id).name %> </b></span>
+                        <b><%= link_to "#{User.find_by(:id => request.requestor_id).name}", user_path(User.find_by(:id => request.requestor_id)), :class => 'name' %></b>
                         <br>
                         <%= link_to "Accept", friends_path(:friend_id => request.requestor_id), method: :post, :class => 'acceptRequest' %>
                         <%= link_to "Decline", friend_request_path(:id => request.id, :requestor_id => request.requestor_id), method: :delete, :class => 'declineRequest' %>
@@ -39,7 +39,7 @@
 
 
                     <div>
-                        <%= link_to "#{User.find_by(:id => friend.friend_id).name}", user_path(User.find_by(:id => friend.friend_id).id),:class => 'name' %>
+                        <%= link_to "#{User.find_by(:id => friend.friend_id).name}", user_path(User.find_by(:id => friend.friend_id).id), :class => 'name' %>
                         <br>
                         <%= link_to "Delete friend", friend_path(:id => friend.id, :friend_id => friend.friend_id), method: :delete, :class => 'deleteFriend' %>
                         <br>

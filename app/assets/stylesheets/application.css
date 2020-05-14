@@ -65,6 +65,7 @@ main {
     margin-top: 50px;
     margin-left: 200px;
     margin-right: 200px;
+    padding-bottom: 10px;
     text-align: center;
     background-color: #D7CEC7;
     border-radius: 5px;
@@ -90,8 +91,26 @@ main a:hover {
 }
 
 main .userShow .profilePic {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
+}
+
+main .userShow .postPic {
+    max-width: 50%;
+}
+
+main .userShow .about_me p.content {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+main .userShow section.posts article.post {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 main .userIndex .user {
@@ -120,20 +139,43 @@ main .postIndex .name {
     text-decoration: underline;
 }
 
+main .postIndex li p.content {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    word-wrap: break-word;
+}
+
 main .postIndex .postPic {
-    width: 150px;
-    height: 150px;
+    max-width: 50%;
 }
 
 main .postNew .postTitle, main .postNew .postContent, main .postNew .submitBtn {
     margin-top: 5px;
 }
 
-main .postShow .postPic {
-    max-width: 100%;
+main .postNew .postContent textarea {
+    resize: both;
+    width: 80%;
 }
 
-main .postShow .likes li.name {
+main .postShow .postPic {
+    max-width: 80%;
+}
+
+main .postShow ol.comments li .comment {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+main .postShow textarea.commentContent {
+    resize: both;
+    width: 80%;
+}
+
+main .postShow .likes li.name, main .postShow ol.comments .comment {
     color: #A38300;
 }
 
@@ -153,4 +195,19 @@ main .userEdit .field, main .userEdit .actions {
     background-color: #76323F;
     color: white;
     cursor: pointer;
+}
+
+
+/* Responsive Design for 1024 pixels*/
+
+@media only screen and (max-width: 1024px) {
+    main {
+        display: block;
+        margin-top: 50px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-bottom: 10px;
+        text-align: center;
+        background-color: #D7CEC7;
+    }
 }

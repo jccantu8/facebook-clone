@@ -22,7 +22,7 @@
         </p>
     </div>
 
-    <% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) %>
+    <% if current_user.id != @user.id && !already_a_friend(@user.id) && !already_sent_a_request(@user.id) && !already_received_a_request(@user.id) %>
         <%= form_with model: @friend_request, url: friend_requests_path, local: true do |f| %>
 
             <%= f.hidden_field :requestee_id, value: @user.id %>
@@ -34,9 +34,15 @@
     <hr>
 
     <section class="posts">
+        <h2>Posts</h2>
+
         <% @list_of_posts.each do |post| %>
             <article class="post">
                 <%= link_to "#{post.title}", user_post_path(post.user.id, post.id), :class => 'title' %>
+                <br>
+                <% if post.picture.attached? %>
+                    <%= image_tag(post.picture, :class => "postPic") %>
+                <% end %>
                 <br>
                 <p class="content"><%= post.content %></p>
                 <hr>

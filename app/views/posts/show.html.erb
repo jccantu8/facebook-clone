@@ -1,5 +1,5 @@
 <div class="postShow">
-    <h1> <%= @post.title %> </h1>
+    <h1 class="title"> <%= @post.title %> </h1>
     <span class="name"><i> Author: <%= @post.user.name %> </i></span>
     <br>
     <p class="content"> <%= @post.content %> </p>
@@ -31,7 +31,11 @@
     <% if !@list_of_comments.empty? %>
         <ol class="comments"> <% @list_of_comments.each do |comment| %>
             <li> 
-                <span class="comment"><i> <%= comment.user.name %> said:</i> <%= comment.content %></span>
+                <span><b><i> <%= comment.user.name %> said:</i></b></span>
+
+                <div class="comment">
+                    <%= comment.content %>
+                </div>
 
                 <% if ((comment.user_id == current_user.id) || (@post.user.id == current_user.id)) %>
                     <%= link_to "Delete Comment", comment_path(:id => comment.id, :post_id => @post.id), method: :delete, data: {confirm: "Are you sure?" }, :class => 'deleteComment' %>

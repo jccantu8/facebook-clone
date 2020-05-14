@@ -95,13 +95,13 @@ class PostsControllerTest  < ActionDispatch::IntegrationTest
     sign_in @user
     get user_post_url(:user_id => @user.id, :id => @mypost.id)
     assert_response :success
-    assert_select ".postShow .postTitle", text: "#{@mypost.title}"
+    assert_select ".postShow .title", text: "#{@mypost.title}"
     assert_select ".postShow .name", text: "Author: #{@user.name}"
     assert_select ".postShow .content", text: "#{@mypost.content}"
     assert_select ".postShow .likeTitle", text: "Likes"
     assert_select ".postShow .likes .name", text: "#{@friend.name}"
     assert_select ".postShow .commentTitle", text: "Comments"
-    assert_select ".postShow .comments .comment", text: "#{@friend.name} said: #{@mypost.comments.first.content}"
+    assert_select ".postShow .comments .comment", text: @mypost.comments.first.content
   end
 
   test "should be able to delete post" do
