@@ -11,6 +11,7 @@
         - Like/unlike posts
         - Create/delete comments on posts
         - Timeline showing your posts along with all of your friends' as well
+        - Sends email confirming registration (using SendGrid)
 
 Here are some images of the site located [here](https://ancient-dawn-78161.herokuapp.com/) which is hosted on Heroku.
 
