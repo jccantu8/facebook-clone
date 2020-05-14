@@ -14,25 +14,25 @@
 
     Here are some images of the site located [here](https://ancient-dawn-78161.herokuapp.com/) which is hosted on Heroku.
 
-    ## Profile ##
+## Profile ##
 
-    ![profile](/readmeImages/profile.png?raw=true)
+![profile](/readmeImages/profile.png?raw=true)
 
-    ## Users ##
+## Users ##
 
-    ![users](/readmeImages/users.png?raw=true)
+![users](/readmeImages/users.png?raw=true)
 
-    ## New Post ##
+## New Post ##
 
-    ![newpost](/readmeImages/newpost.png?raw=true)
+![newpost](/readmeImages/newpost.png?raw=true)
 
-    ## Post ##
+## Post ##
 
-    ![post1](/readmeImages/post1.png?raw=true)
-    ![post2](/readmeImages/post2.png?raw=true)
+![post1](/readmeImages/post1.png?raw=true)
+![post2](/readmeImages/post2.png?raw=true)
 
-    ## Timeline ##
+## Timeline ##
 
-    ![timeline1](/readmeImages/timeline1.png?raw=true)
-    ![timeline2](/readmeImages/timeline2.png?raw=true)
-    ![timeline3](/readmeImages/timeline3.png?raw=true)
+![timeline1](/readmeImages/timeline1.png?raw=true)
+![timeline2](/readmeImages/timeline2.png?raw=true)
+![timeline3](/readmeImages/timeline3.png?raw=true)
