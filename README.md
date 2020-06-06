@@ -15,6 +15,9 @@
 
 Here are some images of the site located [here](https://ancient-dawn-78161.herokuapp.com/) which is hosted on Heroku.
 
+After signing up with a valid email address, navigate to the users tab at the top to add other users. Alternatively,
+you could go to your profile and update it with information about you along with a picture.
+
 ## Profile ##
 
 ![profile](/readmeImages/profile.png?raw=true)
